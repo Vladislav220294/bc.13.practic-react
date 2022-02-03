@@ -1,5 +1,5 @@
 import { Component } from "react";
-
+import CategoryList from "../CategoryList/CategoryList";
 class TransactionForm extends Component {
   state = {
     date: '2022-02-03',
@@ -15,8 +15,10 @@ class TransactionForm extends Component {
     this.setState({ [name]: value });
     
   }
-
-  handleSubmit = ((e) => {
+  addCategory = (newCategory) => {
+  this.setState((prevState) => ({categoriesList : [...prevState.categoriesList, newCategory] }));
+}
+  handleSubmitTransactions = ((e) => {
     e.prevent.Default();
 
   })
@@ -59,7 +61,7 @@ class TransactionForm extends Component {
           </label>
           <button type="submit">Submit</button>
         </form>
-        <CategoryList categoriesList={categoriesList}/>
+        <CategoryList categoriesList={categoriesList} addCategory={ this.addCategory}/>
     </>
   );
   }
